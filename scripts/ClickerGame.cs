@@ -8,10 +8,14 @@ public partial class ClickerGame : Node
 	public ClickerUI ui;
 	public List<Collector> collectors;
 
+	struct CollectorInfo{int outcome; double coolDown; string infoText;};
+	private List<CollectorInfo> collectorsInfo;
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		ui = GetNode<ClickerUI>("ClickerUI");
+		ui.AddCollectorUI("Basic\nCollector");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -4,13 +4,14 @@ using System;
 public partial class Collector : Node
 {
 	public double remainingCoolDownTime, coolDownTime;
-	public int outcome;
+	public int outcomeValue;
 
 	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
+	public Collector(int outcome, double coolDown)
 	{
 		remainingCoolDownTime = 0.0;
-		coolDownTime = 2.0;
+		coolDownTime = coolDown;
+		outcomeValue = outcome;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -32,7 +33,7 @@ public partial class Collector : Node
 		if(remainingCoolDownTime <= 0.0)
 		{
 			remainingCoolDownTime = coolDownTime;
-			return outcome;
+			return outcomeValue;
 		}
 		else
 		{

@@ -13,12 +13,6 @@ public partial class CollectorUI : HBoxContainer
 		CustomMinimumSize = new Vector2(0,48);
 		SizeFlagsHorizontal = SizeFlags.ExpandFill;
 
-		infoLabel = new Label
-		{
-			Text = infoText,
-			CustomMinimumSize = new Vector2(60, 40)
-		};
-
 		button = new Button
 		{
 			Text = "Collect",
@@ -32,6 +26,13 @@ public partial class CollectorUI : HBoxContainer
 			SizeFlagsHorizontal = SizeFlags.ExpandFill,
 		};
 		AddChild(coolDownBar);
+		
+		infoLabel = new Label
+		{
+			Text = infoText,
+			CustomMinimumSize = new Vector2(60, 40)
+		};
+		AddChild(infoLabel);
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
