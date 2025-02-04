@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://ckp0atf5kjmgj"]
+
+[ext_resource type="PackedScene" uid="uid://c4we8msypbtv" path="res://cenas/clicker_ui.tscn" id="1_2ywhx"]
+[ext_resource type="Script" path="res://scripts/ClickerGame.cs" id="1_p56mm"]
+
+[node name="ClickerGame" type="Node"]
+script = ExtResource("1_p56mm")
+
+[node name="ClickerUI" parent="." instance=ExtResource("1_2ywhx")]
