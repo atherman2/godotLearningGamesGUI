@@ -14,6 +14,9 @@ public partial class ClickerUI : Control
 	public override void _Ready()
 	{
 		runVBox = GetNode<VBoxContainer>("RunPanel/VBox");
+		infoHBox = GetNode<HBoxContainer>("InfoPanel/HBox");
+		moneyUI = new MoneyUI();
+		infoHBox.AddChild(moneyUI);
 		collectorUIs = new List<CollectorUI>();
 	}
 
@@ -28,5 +31,10 @@ public partial class ClickerUI : Control
 		collectorUIs.Add(newCollectorUI);
 		collectorUIindex++;
 		runVBox.AddChild(newCollectorUI);
+	}
+
+	public void SetMoneyLabel(int money)
+	{
+		moneyUI.moneyLabel.Text = $"${money}";
 	}
 }

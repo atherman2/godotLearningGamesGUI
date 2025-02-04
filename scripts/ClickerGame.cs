@@ -37,6 +37,7 @@ public partial class ClickerGame : Node
 	public void IncreaseMoney(int increment)
 	{
 		money += increment;
+		ui.SetMoneyLabel(money);
 	}
 
 	private void DefineCollectorsInfo()
