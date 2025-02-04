@@ -6,7 +6,7 @@ public partial class ClickerGame : Node
 {
 	int money, collectorIndex;
 	public ClickerUI ui;
-	public List<Collector> collectors;
+	public List<Collector> collectors = new() { };
 
 	struct CollectorInfo
 	{
@@ -25,35 +25,52 @@ public partial class ClickerGame : Node
 		collectorIndex = -1;
 		DefineCollectorsInfo();
 		ui = GetNode<ClickerUI>("ClickerUI");
+		AddCollector();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		UpdateCoolDown();
+		UpdateAllCoolDowns();
+	}
+
+	public void IncreaseMoney(int increment)
+	{
+		money += increment;
 	}
 
 	private void DefineCollectorsInfo()
 	{
 		collectorsInfo = new List<CollectorInfo>
 		{
-			new (1, 2.0, "Coletor\nBásico")
+			new (1, 2.0, "Basic\nCollector")
 		};
 	}
 
 	public void AddCollector()
 	{
-		collectorIndex++;
-		CollectorInfo collectorInfo = collectorsInfo[collectorIndex];
+		CollectorInfo collectorInfo = collectorsInfo[++collectorIndex];
+		Collector collector = new Collector(collectorInfo.outcomeValue, collectorInfo.coolDownTime, IncreaseMoney);
+		collectors.Add(collector);
+		AddChild(collector);
 		ui.AddCollectorUI(collectorInfo.infoTextString);
-		collectors.Add(new Collector(collectorInfo.outcomeValue, collectorInfo.coolDownTime));
+		CollectorUI collectorUI = ui.collectorUIs[collectorIndex];
+		collectorUI.button.Pressed += collector.Collect;
 	}
 
-	public void Collect(int index)
+	public void UpdateAllCoolDowns()
 	{
+		int index = 0;
+		while(index <= collectorIndex)
+		{
+			UpdateCoolDown(index++);
+		}
 	}
 
-	public void UpdateCoolDown()
+	public void UpdateCoolDown(int index)
 	{
+		double remainingCoolDownTime = collectors[index].remainingCoolDownTime;
+		double coolDownTime = collectors[index].coolDownTime;
+		ui.collectorUIs[index].coolDownBar.Value = 100 * remainingCoolDownTime / coolDownTime;
 	}
 }
