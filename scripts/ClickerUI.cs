@@ -5,7 +5,9 @@ using System.Collections.Generic;
 public partial class ClickerUI : Control
 {
 	public VBoxContainer runVBox;
+	public HBoxContainer infoHBox;
 	public List<CollectorUI> collectorUIs;
+	public MoneyUI moneyUI;
 	public int collectorUIindex = -1;
 
 	// Called when the node enters the scene tree for the first time.
