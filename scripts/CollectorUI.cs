@@ -10,13 +10,13 @@ public partial class CollectorUI : HBoxContainer
 	// Called when the node enters the scene tree for the first time.
 	public CollectorUI(string infoText)
 	{
-		CustomMinimumSize = new Vector2(0,48);
+		CustomMinimumSize = new Vector2(0, 48);
 		SizeFlagsHorizontal = SizeFlags.ExpandFill;
 
 		button = new Button
 		{
 			Text = "Collect",
-			CustomMinimumSize = new Vector2(40,40)
+			CustomMinimumSize = new Vector2(40, 40)
 		};
 		AddChild(button);
 
