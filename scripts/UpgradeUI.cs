@@ -7,7 +7,7 @@ public partial class UpgradeUI : HBoxContainer
 	public Label nameLabel, descriptionLabel;
 
 	// Called when the node enters the scene tree for the first time.
-	public UpgradeUI(string name, string description, int cost)
+	public UpgradeUI(string name, string description)
 	{
 		CustomMinimumSize = new Vector2(0, 48);
 		SizeFlagsHorizontal = SizeFlags.ExpandFill;
@@ -31,6 +31,7 @@ public partial class UpgradeUI : HBoxContainer
 			Text = "Upgrade",
 			CustomMinimumSize = new Vector2(40, 40)
 		};
+		AddChild(button);
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

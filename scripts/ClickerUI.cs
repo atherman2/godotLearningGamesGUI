@@ -4,9 +4,10 @@ using System.Collections.Generic;
 
 public partial class ClickerUI : Control
 {
-	public VBoxContainer runVBox;
+	public VBoxContainer runVBox, upgradeVBox;
 	public HBoxContainer infoHBox;
 	public List<CollectorUI> collectorUIs;
+	public UpgradeUI upgradeUI;
 	public MoneyUI moneyUI;
 	public int collectorUIindex = -1;
 
@@ -14,8 +15,11 @@ public partial class ClickerUI : Control
 	public override void _Ready()
 	{
 		runVBox = GetNode<VBoxContainer>("RunPanel/VBox");
+		upgradeVBox = GetNode<VBoxContainer>("UpgradePanel/VBox");
 		infoHBox = GetNode<HBoxContainer>("InfoPanel/HBox");
+		upgradeUI = new UpgradeUI("Second\nCollector", "Unlocks the second collector\nGives $4 every 5 sec");
 		moneyUI = new MoneyUI();
+		upgradeVBox.AddChild(upgradeUI);
 		infoHBox.AddChild(moneyUI);
 		collectorUIs = new List<CollectorUI>();
 	}

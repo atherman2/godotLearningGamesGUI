@@ -8,6 +8,8 @@ public partial class ClickerGame : Node
 	public ClickerUI ui;
 	public List<Collector> collectors = new() { };
 
+	public Upgrade upgrade;
+
 	struct CollectorInfo
 	{
 		public int outcomeValue; public double coolDownTime; public string infoTextString;
@@ -26,6 +28,7 @@ public partial class ClickerGame : Node
 		DefineCollectorsInfo();
 		ui = GetNode<ClickerUI>("ClickerUI");
 		AddCollector();
+		ui.upgradeUI.button.Pressed += UpgradeToSecondCollector;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -44,7 +47,8 @@ public partial class ClickerGame : Node
 	{
 		collectorsInfo = new List<CollectorInfo>
 		{
-			new (1, 2.0, "Basic\nCollector")
+			new (1, 2.0, "Basic\nCollector"),
+			new (4, 5.0, "Collecor")
 		};
 	}
 
@@ -73,5 +77,14 @@ public partial class ClickerGame : Node
 		double remainingCoolDownTime = collectors[index].remainingCoolDownTime;
 		double coolDownTime = collectors[index].coolDownTime;
 		ui.collectorUIs[index].coolDownBar.Value = 100 * remainingCoolDownTime / coolDownTime;
+	}
+
+	public void UpgradeToSecondCollector()
+	{
+		if(money > 10)
+		{
+			money -= 10;
+			AddCollector();
+		}
 	}
 }
